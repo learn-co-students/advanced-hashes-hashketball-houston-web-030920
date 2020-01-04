@@ -203,9 +203,29 @@ def player_numbers(team)
 end
 return player_num
 end
+def player_stats(player_name)
+  stats_hash = {}
+    game_hash.each do |team_place,team_name|
+      team_name.each do |team_attributes,team_data|
+        if team_attributes == :players
+          team_data.each do |players|
+           if players[:player_name] == player_name
+               players.map do |stats,value|
+                 stats_hash[stats] = value
+           end
+         end
+       end
+     end
+   end
+ end
+ stats_hash
+  binding.pry
+ end
+ 
+        
 
-    
       
+
  
       
 
