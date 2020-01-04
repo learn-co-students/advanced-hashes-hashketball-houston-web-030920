@@ -212,6 +212,7 @@ def player_stats(player_name)
            if players[:player_name] == player_name
                players.map do |stats,value|
                  stats_hash[stats] = value
+                 stats_hash.delete_if{|key,value| key == :player_name}
            end
          end
        end
