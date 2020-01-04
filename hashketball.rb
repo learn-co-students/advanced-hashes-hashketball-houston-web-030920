@@ -220,7 +220,6 @@ def player_stats(player_name)
    end
  end
  stats_hash
-  binding.pry
  end
  
         
