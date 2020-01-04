@@ -185,21 +185,23 @@ def team_names
   return teams
 end
 def player_numbers(team) 
+  player_num = []
   game_hash.each do |team_place,team_name|
+    if team_name[:team_name] == team
     team_name.each do|team_attributes, team_data|
     if team_attributes == :players
          team_data.each do |player|
-           player_number = player.map do |key,value|
+            player.map do |key,value|
              if key == :number
-                  player[key]
-                  binding.pry
+                player_num <<  player[key]
             end
          end
      end
     end
   end
+  end
 end
-return player_number
+return player_num
 end
 
     
