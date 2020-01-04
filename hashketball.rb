@@ -240,7 +240,23 @@ def big_shoe_rebounds
 end
  rebounds
 end
-
+def most_points_scored
+  player = " "
+  most_points_scored= 0 
+  game_hash.each do|team_place, team_name|
+    team_name.each do|team_attributes,team_data|
+      if team_attributes == :players
+        team_data.each do |players|
+          if players[:points] > most_points_scored
+               most_points_scored = players[:points]
+              player = players[:player_name]
+          end
+      end
+    end  
+  end
+end
+player
+end
 
   
 
