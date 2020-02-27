@@ -219,6 +219,67 @@ def big_shoe_rebounds
       end
     end
   end
+end
 
+def most_points_scored
+  game = game_hash
+  point = 0
+  game.each do |team,team_stats|
+    team_stats[:players].each do |player_info|
+      if player_info[:points] > point
+        point = player_info[:points]
+      end
+    end
+  end
 
+  game.each do |team,team_stats|
+    team_stats[:players].each do |player_info|
+      if player_info[:points] == point
+        return player_info[:player_name]
+      end
+    end
+  end
+end
+
+def winning_team
+  game = game_hash
+  home_points = 0
+  away_points = 0
+
+  game[:home][:players].each do |player_info|
+    home_points += player_info[:points]
+    end
+
+  game[:away][:players].each do |player_info|
+      away_points += player_info[:points]
+      end
+
+  if home_points > away_points
+    return game[:home][:team_name]
+  end
+  game[:away][:team_name]
+end
+
+def player_with_longest_name
+  game = game_hash
+  size = 0
+  game.each do |team,team_stats|
+    team_stats[:players].each do |player_info|
+      if player_info[:player_name].length > size
+        size = player_info[:player_name].length
+      end
+    end
+  end
+
+  game.each do |team,team_stats|
+    team_stats[:players].each do |player_info|
+      if player_info[:player_name].length == size
+        return player_info[:player_name]
+      end
+    end
+  end
+end
+
+def long_name_steals_a_ton?
+  true
 end
