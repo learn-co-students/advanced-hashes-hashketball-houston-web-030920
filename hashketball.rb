@@ -112,7 +112,7 @@ def game_hash
   hash
 end 
 
-#-------------------------
+#-------------------------------------------------------
 
 def num_points_scored(player_name)
   point = 0 
@@ -125,6 +125,8 @@ def num_points_scored(player_name)
   end
   point
 end
+
+#-------------------------------------------------------
 
 def shoe_size(player_name)
   shoe_size = 0 
@@ -139,6 +141,8 @@ def shoe_size(player_name)
   shoe_size
 end
 
+#-------------------------------------------------------
+
 def team_colors(team_name)
   colors = ""
   game_hash.keys.each do |team|
@@ -149,6 +153,8 @@ def team_colors(team_name)
   colors
 end
 
+#-------------------------------------------------------
+
 def team_names
   team_names_array = []
   game_hash.keys.each do |team|
@@ -156,6 +162,8 @@ def team_names
   end 
   team_names_array
 end
+
+#-------------------------------------------------------
 
 def player_numbers(team_name)
   team_player_nums = [] 
@@ -169,6 +177,8 @@ def player_numbers(team_name)
   end
   team_player_nums
 end
+
+#-------------------------------------------------------
 
 def player_stats (player_name)
   player_stat = ''
@@ -184,6 +194,8 @@ def player_stats (player_name)
   player_stat
 end
 
+#-------------------------------------------------------
+
 def big_shoe_rebounds
   biggest_shoe_size = 0
   rebound = 0
@@ -194,7 +206,7 @@ def big_shoe_rebounds
         biggest_shoe_size = k[:shoe]
       end
     end
-  end 
+  end
   
   game_hash.keys.each do |team|
     game_hash[team][:players].each do |n|
@@ -205,3 +217,66 @@ def big_shoe_rebounds
   end
   rebound
 end
+
+#-------------------------------------------------------
+
+def most_points_scored
+  point = 0
+  player_name = ""
+  
+  game_hash.keys.each do |team|
+    game_hash[team][:players].each do |k|
+      if k[:points] > point 
+        point = k[:points]
+      end
+    end
+  end 
+  
+  game_hash.keys.each do |team|
+    game_hash[team][:players].each do |n|
+      if n[:points] == point
+        player_name = n[:player_name]
+      end
+    end
+  end
+  player_name
+end
+
+#-------------------------------------------------------
+
+def winning_team
+ home_team_points = 0
+ away_team_points = 0
+ 
+ game_hash[:home][:players].each do |k|
+    home_team_points += k[:points]
+  end
+  game_hash[:away][:players].each do |k|
+    away_team_points += k[:points]
+  end
+  
+  if home_team_points > away_team_points
+    game_hash[:home][:team_name]
+  else
+    game_hash[:away][:team_name]
+  end
+end
+
+#-------------------------------------------------------
+
+def player_with_longest_name
+  player_names_array = []
+  
+  game_hash.keys.each do |team|
+    game_hash[team][:players].each do |k|
+      player_names_array << k[:player_name]
+    end
+  end
+  player_names_array.sort_by(&:length).last 
+end
+
+#-------------------------------------------------------
+
+# def long_name_steals_a_ton?
+  
+# end
